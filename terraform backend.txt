@@ -1,0 +1,54 @@
+
+provider "aws" {
+region = "ap-south-1"
+}
+
+resource "aws_instance" "one" {
+ami = "ami-06006e8b065b5bd46"
+instance_type = "t2.micro"
+tags = {
+Name = "krishna"
+}
+lifecycle {
+prevent_destroy = false
+}
+}
+
+Prevent Destroy: it will not delete the resources
+
+tERRAFORM REMOTE BACKEND SETUP:
+when we create infra the information of resources will store on state file.
+so it will be tracking the infra information.
+so we need to take backup of that file.
+if we lost that file we cant track the infra.
+so we prefer to locate the state file on remote loaction.
+here im using s3 as remote backend.
+
+
+provider "aws" {
+region = "ap-south-1"
+}
+
+terraform {
+  backend "s3" {
+    bucket = "krishna76543897"
+    key    = "prod/terraform.tfstate"
+    region = "ap-south-1"
+  }
+}
+
+resource "aws_instance" "one" {
+ami = "ami-06006e8b065b5bd46"
+instance_type = "t2.micro"
+tags = {
+Name = "krishna123"
+}
+}
+
+create Bucket manually
+
+Note: while using new block always we need to run terraform init
+otherwise, plugins will not be downloaded
+
+after removing backend setup run this command:
+terraform init -migrate-state
