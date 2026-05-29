@@ -1,0 +1,76 @@
+resources used to run our application on cloud.
+ex: ec2, s3, elb, vpc --------------
+
+
+in genral we used to deploy infra on manual 
+
+Manual:
+1. time consume
+2. manual work
+3. commiting mistakes
+
+Automate -- > Terraform -- > code -- > hcl (Hashicorp configuration languge)
+
+
+
+its a tool used to make infrastructure automation.
+its a free and opensource.
+its platform independent.
+it comes on year 2014.
+who: mitchel hasimoto 
+ownde: hasicorp 
+terraform is written on go language.
+We can call terraform as IAAC TOOL.
+
+HOW IT WORKS:
+terraform uses code to automate the infra.
+we use HCL : HashiCorp Configuration Language.
+
+IAAC: Infrastructure as a code.
+
+Code --- > execute --- > Infra 
+
+ADVANTGAES:
+1. Reuseable 
+2. Time saving
+3. Automation
+4. Avoiding mistakes
+5. Dry run
+
+
+CFT = AWS
+ARM = AZURE
+GDE = GOOGLE
+
+TERRAFROM = ALL CLOUDS
+
+INSTALLING TERRAFORM:
+
+sudo yum install -y yum-utils shadow-utils
+sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
+sudo yum -y install terraform
+aws configure
+
+
+mkdir terraform
+cd terraform
+main.tf
+provider "aws" {
+region = "us-east-1"
+}
+
+resource "aws_instance" "krishna1" {
+ami = "ami-00e801948462f718a"
+instance_type = "t3.micro"
+}
+
+resource "aws_s3_bucket" "kri2" {
+bucket = "krishna987623455"
+}
+
+resource "aws_iam_user" "kri5" {
+name = "krishna999"
+}
+
+
+
